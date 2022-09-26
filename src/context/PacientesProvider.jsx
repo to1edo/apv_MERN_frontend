@@ -10,6 +10,7 @@ const PacientesProvider = ({children})=>{
     const [paciente, setPaciente] = useState({})
     const [eliminado, setEliminado] = useState(false)
     const {auth} = useAuth()
+
     useEffect(()=>{
         const obtenerPacientes = async()=>{
             const token = localStorage.getItem('JWT');
@@ -69,7 +70,7 @@ const PacientesProvider = ({children})=>{
                 })
 
                 setPacientes(listaPacientes)
-
+                console.log(listaPacientes)
                 setAlerta({msg:`Exito, ${data.nombre} ha sido guardado correctamente`, error: false})
 
                 setTimeout(() => {

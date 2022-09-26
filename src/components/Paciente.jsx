@@ -12,7 +12,7 @@ const Paciente = ({ paciente}) => {
 
     return (
         <>
-            <div className="mr-8 text-black font-medium bg-gradient-to-r from-indigo-900 via-indigo-700 to-indigo-900 rounded-xl my-4  p-4 md:p-6 ">
+            <div className=" text-black font-medium bg-gradient-to-r from-indigo-900 via-indigo-700 to-indigo-900 rounded-xl my-4  p-4 md:p-6 ">
                 <p className="text-right"><span className=" text-3xl text-white  font-extra-bold ">{paciente.nombre}</span> </p>
                 <p >Propietario: <span className=" font-normal text-white ">{paciente.propietario}</span> </p>
                 <p >Email: <span className="  font-normal text-white ">{paciente.email}</span> </p>
