@@ -3,14 +3,19 @@ import useAuth from "../hooks/useAuth"
 
 import Header from "../components/Header"
 import Foorter from "../components/Foorter"
-
+import Spinner from "../components/Spinner"
 
 const RutaProtegida = () => {
 
     const {auth, cargando} = useAuth()
 
     if(cargando){ 
-        return "Cargando, aguarde..."
+        return( 
+            <>
+                <p className="text-center my-8 text-xl">Cargando, aguarde un momento</p>
+                <Spinner/>
+            </>
+        )
     }
 
     return (

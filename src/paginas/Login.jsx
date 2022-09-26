@@ -3,13 +3,14 @@ import { useState} from "react"
 import Alerta from "../components/Alerta"
 import axios from 'axios'
 import useAuth from "../hooks/useAuth"
+import Spinner from "../components/Spinner"
 const Login = () => {
 
     
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [ alerta, setAlerta ] = useState({})
-
+    const [cargando, setCargando] = useState(false)
     const {setAuth} = useAuth()
     const navigate = useNavigate()
 
@@ -31,7 +32,7 @@ const Login = () => {
             setAlerta({msg:'La contraseña debe tener al menos 6 caracteres', error: true})
             return;
         }
-        
+        setCargando(true)
         try {
             const {data}= await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/veterinarios/login`,{email, password})
             localStorage.setItem('JWT', data.jwt)
@@ -43,6 +44,7 @@ const Login = () => {
         } catch (error) {
             setAlerta({msg:error.response.data.msg, error: true})
         }
+        setCargando(false)
 
     }
 
@@ -69,6 +71,9 @@ const Login = () => {
                         <input onChange={(e)=> setPassword(e.target.value)} id="password" className="w-full border p-3 bg-grey-50 rounded-xl" type="password" placeholder="Tu contraseña" required />
                     </div>
                     <p className="text-sm text-gray-300">* Campos obligatorios</p>
+                
+                    { cargando && <Spinner/>}
+
                     <div>
                         <input  className=" cursor-pointer w-full mt-8 block bg-indigo-700 py-2 px-4 rounded-lg text-white font-medium uppercase md:w-auto md:mx-auto" type="submit" value="Iniciar sesión" />
                     </div>
