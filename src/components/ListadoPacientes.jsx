@@ -14,17 +14,15 @@ const ListadoPacientes = () => {
   useEffect(() => {
     setPacientesFiltrados([])
     
+    const expReg = new RegExp(filtro,'')
     let filtrados =[]
+
     pacientes.forEach(paciente => {
-      if(filtro.toLowerCase() === paciente.nombre.toLowerCase()){
+
+      if(expReg.test(paciente.email.toLowerCase()) || expReg.test(paciente.nombre.toLowerCase()) || expReg.test(paciente.propietario.toLowerCase())){
         filtrados.push(paciente)
       }
-      if(filtro.toLowerCase() === paciente.email.toLowerCase()){
-        filtrados.push(paciente)
-      }
-      if(filtro.toLowerCase() === paciente.propietario.toLowerCase()){
-        filtrados.push(paciente)
-      }
+
     });
 
     if(filtrados.length){
@@ -46,11 +44,20 @@ const ListadoPacientes = () => {
             </div>
           </div>
           { alerta && eliminado && <Alerta alerta={alerta}/>}
-          <div className='flex flex-wrap mt-6 gap-4 justify-evenly items-center  max-h-screen overflow-y-auto'>
-            { pacientesFiltrados.length ? '' : setPacientesFiltrados(pacientes)}
-            { pacientesFiltrados.map( paciente=>{
-              return<Paciente key={paciente._id} paciente={paciente} />
-            })}
+          <div id='lista-pacientes' className='flex flex-wrap mt-6 gap-4 justify-evenly items-center  max-h-screen overflow-y-auto'>
+            
+            { !pacientesFiltrados.length ? 
+              (
+                <>
+                  <p className='text-gray-300 text-center text-xl  font-medium  pt-4 md:pt-0'>No hay conincidencia para tu busqueda</p>
+                </>
+              ) : 
+              (
+                pacientesFiltrados.map( paciente=>{
+                  return<Paciente key={paciente._id} paciente={paciente} />
+                })
+              )
+            }
           </div>
         </>
 

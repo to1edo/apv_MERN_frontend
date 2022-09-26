@@ -19,5 +19,20 @@ body input, body textarea{
     color: black;
 }
 
-#root{
+body::-webkit-scrollbar {
+    width: 1em;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #0e1092;
+    border-radius: 5px;
+}
+
+#lista-pacientes::-webkit-scrollbar {
+    width: 1em;
+}
+
+#lista-pacientes::-webkit-scrollbar-thumb {
+    background-color: #0e1092;
+    border-radius: 5px;
 }
