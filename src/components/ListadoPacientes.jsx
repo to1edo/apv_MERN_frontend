@@ -49,7 +49,7 @@ const ListadoPacientes = () => {
             { !pacientesFiltrados.length ? 
               (
                 <>
-                  <p className='text-gray-300 text-center text-xl  font-medium  pt-4 md:pt-0'>No hay conincidencia para tu busqueda</p>
+                  <p className='text-gray-300 text-center text-xl  font-medium  pt-4 md:pt-0'>No hay coincidencias para tu búsqueda</p>
                 </>
               ) : 
               (
