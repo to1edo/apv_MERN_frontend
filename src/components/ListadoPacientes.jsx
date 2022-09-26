@@ -14,7 +14,7 @@ const ListadoPacientes = () => {
   useEffect(() => {
     setPacientesFiltrados([])
     
-    const expReg = new RegExp(filtro,'')
+    const expReg = new RegExp(filtro.toLowerCase(),'')
     let filtrados =[]
 
     pacientes.forEach(paciente => {
@@ -25,9 +25,7 @@ const ListadoPacientes = () => {
 
     });
 
-    if(filtrados.length){
-      setPacientesFiltrados(filtrados)
-    }
+    setPacientesFiltrados(filtrados)
 
   }, [filtro, pacientes])
 
@@ -38,14 +36,14 @@ const ListadoPacientes = () => {
         <>
           <div className='flex flex-col gap-4 justify-between items-center'>
             <h2 className='grow text-gray-300 text-center text-2xl  font-medium  pt-4 md:pt-0'>Tu listado de Pacientes</h2>
-            <div className='grow self-start'>
+            <div className='ml-4 grow self-start'>
               <label htmlFor="busqueda" className='text-gray-300 font-medium'>Buscar paciente</label>
               <input onChange={(e)=> setFiltro(e.target.value)} className='mt-1 w-full px-4 py-2 rounded-lg' type="text" name="busqueda" id="busqueda" placeholder='email, mascota ó propietario' />
             </div>
           </div>
           { alerta && eliminado && <Alerta alerta={alerta}/>}
           <div id='lista-pacientes' className='flex flex-wrap mt-6 gap-4 justify-evenly items-center  max-h-screen overflow-y-auto'>
-            
+
             { !pacientesFiltrados.length ? 
               (
                 <>
